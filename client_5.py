@@ -13,7 +13,7 @@ from fuzzywuzzy import process
 # ===== CONFIG =====
 EV3_IP = "169.254.60.46"  # Your EV3 IP
 PORT = 9999
-GEMINI_API_KEY = "AIzaSyCvP5XFpYckv7RFYE6Sx_9x5Sjk4-mzdoM"
+GEMINI_API_KEY = ""
 GEMINI_MODEL_ID = "gemini-1.5-pro-latest"
 
 ROBOT_COMMANDS = [
@@ -194,3 +194,4 @@ tk.Button(root, text="✋ Gesture Control", command=lambda: threading.Thread(tar
 tk.Button(root, text="Exit", command=lambda: (sock.close(), root.destroy()), bg="#B22222", fg="white").pack(pady=5)
 
 root.mainloop()
+
