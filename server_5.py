@@ -37,16 +37,12 @@ def execute_command(cmd):
 
     # Movement
     if cmd == "forward":
-        dist_cm = ultra_sensor.distance_centimeters
-        if dist_cm > 8:  # Only move if distance > 8cm
-            motor_left.on(SpeedPercent(50))
-            motor_right.on(SpeedPercent(50))
-            time.sleep(2)
-            motor_left.off()
-            motor_right.off()
-            return "Moved forward"
-        else:
-            return "Obstacle too close, cannot move forward"
+        motor_left.on(SpeedPercent(50))
+        motor_right.on(SpeedPercent(50))
+        time.sleep(2)
+        motor_left.off()
+        motor_right.off()
+        return "Moved forward"
 
     elif cmd == "backward":
         motor_left.on(SpeedPercent(-50))
@@ -115,7 +111,7 @@ def execute_command(cmd):
     elif cmd == "exit":
         return "exit"
 
-    return ""  # Do not return "Unknown command" to avoid speaker saying it
+    return ""  # No "Unknown command" to avoid TTS issues
 
 # TCP Server
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
