@@ -76,17 +76,6 @@ button_frame.pack(pady=10)
 
 def send_command(cmd):
     try:
-        # Obstacle check: if trying to go forward, check distance first
-        if cmd == "forward":
-            sock.sendall("distance".encode())
-            dist = sock.recv(1024).decode()
-            if "centimeters" in dist:
-                dist_val = int(dist.split()[2])
-                if dist_val < 8:
-                    output_box.insert(tk.END, "Obstacle detected! Forward blocked.\n")
-                    output_box.see(tk.END)
-                    speak_output("Obstacle detected. Forward blocked.")
-                    return ""
         sock.sendall(cmd.encode())
         response = sock.recv(1024).decode()
         output_box.insert(tk.END, "EV3: " + response + "\n")
@@ -194,4 +183,3 @@ tk.Button(root, text="✋ Gesture Control", command=lambda: threading.Thread(tar
 tk.Button(root, text="Exit", command=lambda: (sock.close(), root.destroy()), bg="#B22222", fg="white").pack(pady=5)
 
 root.mainloop()
-
